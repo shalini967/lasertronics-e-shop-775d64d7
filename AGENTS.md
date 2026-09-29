@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep the mobile storefront search-first: brand/cart row, full-width search, then horizontally scrollable categories, because compact retail navigation must stay aligned at phone widths.

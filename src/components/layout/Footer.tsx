@@ -17,7 +17,7 @@ export function Footer() {
               loading="lazy"
               className="size-10 rounded-full object-cover"
             />
-            <span className="font-display text-lg font-extrabold">Lasertronics</span>
+            <span className="font-display text-lg font-extrabold">Lasertronics PVT LTD</span>
           </div>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-muted">
             Sri Lanka's electronics partner for makers, technicians and businesses — components,
