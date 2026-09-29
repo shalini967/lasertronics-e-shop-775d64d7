@@ -7,7 +7,7 @@ export function CategoryRail({ category }: { category: Category }) {
   const items = productsByCategory(category.slug, 6);
 
   return (
-    <section className="container-page py-12 lg:py-16">
+    <section className="container-page py-9 lg:py-16">
       <div className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-4">
         <div className="min-w-0">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
@@ -25,7 +25,7 @@ export function CategoryRail({ category }: { category: Category }) {
         </Link>
       </div>
 
-      <div className="mt-7 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-6">
+      <div className="mt-5 grid grid-cols-2 gap-2.5 sm:mt-7 sm:gap-4 lg:grid-cols-3 xl:grid-cols-6">
         {items.map((p) => (
           <ProductCard key={p.slug} product={p} />
         ))}

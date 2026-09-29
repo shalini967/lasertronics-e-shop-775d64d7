@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X, ShoppingCart, Search, ChevronRight, Phone } from "lucide-react";
+import { Menu, X, ShoppingCart, Search, ChevronRight, Phone, MapPin } from "lucide-react";
 import logoAsset from "@/assets/lasertronics-logo.asset.json";
 import { categories } from "@/data/products";
 import { useCart } from "@/lib/cart";
@@ -27,8 +27,11 @@ export function Header() {
     <>
       {/* Slim utility bar */}
       <div className="bg-ink text-ink-foreground">
-        <div className="container-page flex h-9 items-center justify-between gap-3 text-[11px] sm:text-xs">
-          <p className="truncate">Island-wide delivery · Free over LKR 15,000</p>
+        <div className="container-page grid h-9 grid-cols-[minmax(0,1fr)_auto] items-center gap-3 text-[11px] sm:text-xs">
+          <p className="flex min-w-0 items-center gap-1.5 truncate">
+            <MapPin className="size-3.5 shrink-0 text-primary" aria-hidden />
+            <span className="truncate">Island-wide delivery · Free over LKR 15,000</span>
+          </p>
           <a
             href="tel:+94777882156"
             className="flex shrink-0 items-center gap-1.5 text-ink-muted transition-colors hover:text-primary"
@@ -41,19 +44,19 @@ export function Header() {
       </div>
 
       {/* Sticky nav */}
-      <header className="sticky top-0 z-40 border-b border-border bg-surface/95 backdrop-blur">
-        <div className="container-page grid h-16 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 lg:h-20">
+      <header className="sticky top-0 z-40 border-b border-border bg-ink text-ink-foreground shadow-card lg:bg-surface lg:text-foreground lg:shadow-none">
+        <div className="container-page grid min-h-16 grid-cols-[minmax(0,1fr)_auto] items-center gap-2 py-2 lg:h-20 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:gap-3 lg:py-0">
           <Link to="/" className="flex min-w-0 items-center gap-2.5">
             <img
               src={logoAsset.url}
               alt="Lasertronics logo"
               width={40}
               height={40}
-              className="size-9 shrink-0 rounded-full object-cover lg:size-11"
+              className="size-9 shrink-0 rounded-full object-cover ring-1 ring-ink-foreground/20 lg:size-11 lg:ring-0"
             />
             <span className="min-w-0">
-              <span className="block truncate font-display text-base font-extrabold tracking-tight lg:text-lg">
-                Lasertronics
+              <span className="block truncate font-display text-sm font-extrabold lg:text-lg">
+                Lasertronics PVT LTD
               </span>
               <span className="hidden text-[10px] uppercase tracking-[0.18em] text-muted-foreground sm:block">
                 Prototype by ValGrow Labs
@@ -74,18 +77,18 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="flex items-center justify-end gap-1">
+          <div className="flex shrink-0 items-center justify-end gap-0.5">
             <Link
               to="/shop"
               aria-label="Search products"
-              className="grid size-10 place-items-center rounded-full text-foreground/70 transition-colors hover:bg-muted hover:text-primary"
+              className="hidden size-10 place-items-center rounded-full text-foreground/70 transition-colors hover:bg-muted hover:text-primary lg:grid"
             >
               <Search className="size-5" aria-hidden />
             </Link>
             <Link
               to="/cart"
               aria-label="Cart"
-              className="relative grid size-10 place-items-center rounded-full text-foreground/70 transition-colors hover:bg-muted hover:text-primary"
+              className="relative grid size-10 place-items-center rounded-full text-ink-foreground transition-colors hover:bg-ink-foreground/10 hover:text-primary lg:text-foreground/70 lg:hover:bg-muted"
             >
               <ShoppingCart className="size-5" aria-hidden />
               {count > 0 && (
@@ -99,23 +102,33 @@ export function Header() {
               aria-label="Open menu"
               aria-expanded={open}
               onClick={() => setOpen(true)}
-              className="grid size-10 place-items-center rounded-full text-foreground/70 transition-colors hover:bg-muted lg:hidden"
+              className="grid size-10 place-items-center rounded-full text-ink-foreground transition-colors hover:bg-ink-foreground/10 lg:hidden"
             >
               <Menu className="size-6" aria-hidden />
             </button>
           </div>
+
+          <Link
+            to="/shop"
+            aria-label="Search Lasertronics products"
+            className="col-span-2 grid min-h-11 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 rounded-md bg-surface px-3 text-foreground shadow-card lg:hidden"
+          >
+            <Search className="size-4.5 shrink-0 text-muted-foreground" aria-hidden />
+            <span className="truncate text-sm text-muted-foreground">Search Lasertronics products</span>
+            <span className="text-xs font-bold text-primary">Search</span>
+          </Link>
         </div>
 
         {/* Desktop category rail */}
-        <div className="hidden border-t border-border lg:block">
-          <div className="container-page flex h-11 items-center gap-1">
+        <div className="border-t border-ink-foreground/10 bg-ink lg:border-border lg:bg-surface">
+          <div className="container-page flex h-11 items-center gap-1 overflow-x-auto no-scrollbar">
             {categories.map((c) => (
               <Link
                 key={c.slug}
                 to="/category/$slug"
                 params={{ slug: c.slug }}
                 activeProps={{ className: "text-primary" }}
-                className="rounded-md px-3 py-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+                className="shrink-0 rounded-md px-3 py-1.5 text-xs font-medium text-ink-muted transition-colors hover:bg-ink-foreground/10 hover:text-primary lg:text-[13px] lg:text-muted-foreground lg:hover:bg-muted"
               >
                 {c.name}
               </Link>
